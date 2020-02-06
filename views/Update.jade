@@ -1,0 +1,77 @@
+html
+    head
+        title Update d'article
+        link(rel="stylesheet" href="../assets/css/style.css")
+
+        nav(class="navbar navbar-expand-md")
+            a(class="navbar-brand" href="#") Blog
+        div(class="collapse navbar-collapse" id="navbarCollapse")
+            ul(class="navbar-nav mr-auto")
+                li(class="nav-item")
+                    a(href="../index" class="nav-link") Index
+                li(class="nav-item")
+                    a(href="../login" class="nav-link") Login
+                li(class="nav-item")
+                    a(href="../register" class="nav-link") Register
+                li(class="nav-item")
+                    a(href="../logout" class="nav-link") Logout
+                br
+                li(class="nav-item")
+                    a(href="/pannelAdmin" class="nav-link") Pannel Administrateur
+                li(class="nav-item")
+                    a(href="/pannelAdmin/Add" class="nav-link") Ajouter un article
+                li(class="nav-item")
+                    a(href="/pannelAdmin/Update" class="nav-link active") Mettre à jour un article
+                li(class="nav-item")
+                    a(href="/pannelAdmin/Delete" class="nav-link") Supprimer un article
+    body
+
+    h1 Mise à jour d'article
+
+    p Les champs laissé vide ne seront pas modifié
+
+    form(method="POST")
+        label Titre de l'article à modifier :
+        input(type="text" id="articleTitleToUpdate" name="articleToUpdate[title]")
+        br
+        label Nouveau titre :
+        input(type="text" id="articleTitleUpdated" name="articleToUpdate[newTitle]")
+        br
+        label Nouveau contenu :
+        textarea(id="articleContentUpdated" name="articleToUpdate[newContent]" cols=50 rows=20)
+        br
+        p Nouvelle visibilité :
+        fieldset(id="articleToUpdate[newVisibility]")
+            label Public :
+            input(type="radio", id="publicRadioButton" name="articleToUpdate[newVisibility]" value="public")
+            label Caché :
+            input(type="radio", id="hiddenRadioButton" name="articleToUpdate[newVisibility]" value="hidden")
+        input(type="submit" id="submitButton" name="Modifier")
+        br
+
+    #newArticle
+    #oldArticle
+    if(newArticle !== undefined && oldArticle !== undefined)
+        h2 Ancien article :
+        each item in oldArticle
+            h3 Titre de l'article : #{item.title}
+            h4 Auteur : #{item.author}
+            h4 Date : #{item.creationDate}
+            h5 Visibilité : #{item.visibility}
+            br
+            p #{item.content}
+            br
+            hr
+        h2 Nouvelle article :
+        each prop in newArticle
+            h3 Titre de l'article : #{prop.title}
+            h4 Auteur : #{prop.author}
+            h4 Date : #{prop.creationDate}
+            h5 Visibilité : #{prop.visibility}
+            br
+            p #{prop.content}
+            br
+            hr
+
+
+

@@ -1,0 +1,36 @@
+html
+    head
+        title Login
+        link(rel="stylesheet" href="assets/css/style.css")
+
+        nav(class="navbar navbar-expand-md")
+            a(class="navbar-brand" href="#") Blog
+        div(class="collapse navbar-collapse" id="navbarCollapse")
+            ul(class="navbar-nav mr-auto")
+                li(class="nav-item")
+                    a(href="../index" class="nav-link") Index
+                li(class="nav-item")
+                    a(href="../login" class="nav-link") Login
+                li(class="nav-item")
+                    a(href="../register" class="nav-link") Register
+                li(class="nav-item")
+                    a(href="../logout" class="nav-link") Logout
+
+    body
+
+        h1 Page de Login
+
+        p #{successLogin}
+        p #{successRegister}
+        p #{errorLogin}
+
+        form(method="POST")
+            label Username :
+            input(type="text", id="usernameText" v-model="username" name="user[username]")
+            br
+            label Password :
+            input(type="password", id="password" v-model="password" name="user[password]")
+            br
+            input(type="submit" id="submitButton" name="Connect")
+            br
+        hr

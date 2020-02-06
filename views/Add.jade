@@ -1,0 +1,88 @@
+html
+    head
+        title Ajout d'article
+        link(rel="stylesheet" href="../assets/css/style.css")
+
+        nav(class="navbar navbar-expand-md")
+            a(class="navbar-brand" href="#") Blog
+        div(class="collapse navbar-collapse" id="navbarCollapse")
+            ul(class="navbar-nav mr-auto")
+                li(class="nav-item")
+                    a(href="../index" class="nav-link") Index
+                li(class="nav-item")
+                    a(href="../login" class="nav-link") Login
+                li(class="nav-item")
+                    a(href="../register" class="nav-link") Register
+                li(class="nav-item")
+                    a(href="../logout" class="nav-link") Logout
+                br
+                li(class="nav-item")
+                    a(href="/pannelAdmin" class="nav-link") Pannel Administrateur
+                li(class="nav-item")
+                    a(href="/pannelAdmin/Add" class="nav-link active") Ajouter un article
+                li(class="nav-item")
+                    a(href="/pannelAdmin/Update" class="nav-link") Mettre à jour un article
+                li(class="nav-item")
+                    a(href="/pannelAdmin/Delete" class="nav-link") Supprimer un article
+
+    body
+    h1 Ajout d'article
+
+    p #{successAddArticle}
+    p #{errorAddArticle}
+
+    form(method="POST")
+        label Titre de l'article :
+        input(type="text", id="articleTitleText" v-model="title" name="article[title]")
+        br
+        label Contenu :
+        textarea(id="articleContentText" v-model="content" name="article[content]" cols=50 rows=20)
+        br
+        p Visibilité :
+        fieldset(id="article[visibility]" v-model="visibility")
+            label Public :
+            input(type="radio", id="publicRadioButton" name="article[visibility]" value="public")
+            label Caché :
+            input(type="radio", id="hiddenRadioButton" name="article[visibility]" value="hidden")
+        input(type="submit" id="submitButton" name="Ajouter")
+        br
+    script.
+        let app = new Vue({
+            el: '#app',
+            data:
+                {
+                    errors: [],
+                    title: null,
+                    content: null,
+                    visibility: null
+                },
+
+            methods:
+                {
+                    checkForm: function (e)
+                    {
+                        if (this.title && this.content && this.visibility) {
+                            return true;
+                        }
+
+                        this.errors = [];
+
+                        if (!this.title)
+                        {
+                            this.errors.push("Vous devez rentrer un nom d'utilisateur")
+                        }
+
+                        if (!this.content)
+                        {
+                            this.errors.push("Vous devez rentrer un mot de passe")
+                        }
+
+                        if (!this.visibility)
+                        {
+                            this.errors.push("Vous devez rentrer un email")
+                        }
+
+                        e.preventDefault();
+                    }
+                }
+        });

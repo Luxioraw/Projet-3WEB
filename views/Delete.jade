@@ -1,0 +1,34 @@
+html
+    head
+        title Delete d'article
+        link(rel="stylesheet" href="../assets/css/style.css")
+
+        nav(class="navbar navbar-expand-md")
+            a(class="navbar-brand" href="#") Blog
+        div(class="collapse navbar-collapse" id="navbarCollapse")
+            ul(class="navbar-nav mr-auto")
+                li(class="nav-item")
+                    a(href="../index" class="nav-link") Index
+                li(class="nav-item")
+                    a(href="../login" class="nav-link") Login
+                li(class="nav-item")
+                    a(href="../register" class="nav-link") Register
+                li(class="nav-item")
+                    a(href="../logout" class="nav-link") Logout
+                br
+                li(class="nav-item")
+                    a(href="/pannelAdmin" class="nav-link") Pannel Administrateur
+                li(class="nav-item")
+                    a(href="/pannelAdmin/Add" class="nav-link") Ajouter un article
+                li(class="nav-item")
+                    a(href="/pannelAdmin/Update" class="nav-link") Mettre à jour un article
+                li(class="nav-item")
+                    a(href="/pannelAdmin/Delete" class="nav-link active") Supprimer un article
+    body
+
+    h1 Suppression d'article
+    form(method="POST")
+        label Titre de l'article à supprimer :
+        input(type="text", id="articleToDeleteTitleText" name="articleToDelete[title]")
+        br
+        input(type="submit" id="submitButton" name="Supprimer")

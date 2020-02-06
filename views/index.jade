@@ -1,0 +1,59 @@
+html
+    head
+        title Index
+        link(rel="stylesheet" href="assets/css/style.css")
+
+        nav(class="navbar navbar-expand-md")
+            a(class="navbar-brand" href="#") Blog
+        div(class="collapse navbar-collapse" id="navbarCollapse")
+            ul(class="navbar-nav mr-auto")
+                li(class="nav-item active")
+                    a(href="index" class="nav-link") Index
+                li(class="nav-item")
+                    a(href="login" class="nav-link") Login
+                li(class="nav-item")
+                    a(href="register" class="nav-link") Register
+                li(class="nav-item")
+                    a(href="logout" class="nav-link") Logout
+                br
+                if role === "Administrateur"
+                    li(class="nav-item")
+                        a(href="/pannelAdmin" class="nav-link") Pannel Administrateur
+                    li(class="nav-item")
+                        a(href="/pannelAdmin/Add" class="nav-link") Ajouter un article
+                    li(class="nav-item")
+                        a(href="/pannelAdmin/Update" class="nav-link") Mettre à jour un article
+                    li(class="nav-item")
+                        a(href="/pannelAdmin/Delete" class="nav-link") Supprimer un article
+
+    body
+         h1 Page d'index
+        #username
+        if username !== undefined
+            p  Vous êtes connecté sous le compte #{username} et vous êtes un #{role}
+
+            div(class="carousel slide" id="mycarousel")
+                #publicArticles
+                if(publicArticles !== undefined)
+                    div(class="carousel-inner")
+                        each item, index  in publicArticles
+                            div(class="carousel-item active")
+                                div(class="carousel-caption text-left")
+                                    h3 Titre de l'article : #{item.title}
+                                    h4 Auteur : #{item.author}
+                                    h4 Date : #{item.creationDate}
+                                    br
+                                    p #{item.content}
+                                br
+                            p Like / Dislike :
+                                form(method="POST")
+                                    input(type="submit" id="submitButton" name="like[#{index}]" value="Like Article #{index}" )
+                            hr
+                            hr
+                else
+                    p #{noPublicArticle}
+
+        else
+            p #{notConnected}
+
+

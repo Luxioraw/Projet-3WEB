@@ -1,0 +1,77 @@
+html
+    head
+        title Register
+        link(rel="stylesheet" href="assets/css/style.css")
+        nav(class="navbar navbar-expand-md")
+            a(class="navbar-brand" href="#") Blog
+        div(class="collapse navbar-collapse" id="navbarCollapse")
+            ul(class="navbar-nav mr-auto")
+                li(class="nav-item")
+                    a(href="../index" class="nav-link") Index
+                li(class="nav-item")
+                    a(href="../login" class="nav-link") Login
+                li(class="nav-item")
+                    a(href="../register" class="nav-link") Register
+                li(class="nav-item")
+                    a(href="../logout" class="nav-link") Logout
+    body
+
+        h1 Page de Register
+
+        p #{errorRegister}
+
+        form(method="POST")
+            label Username :
+            input(type="text", id="usernameText" v-model="username" name="user[username]")
+            br
+            label Password :
+            input(type="password", id="password" v-model="password" name="user[password]")
+            br
+            label Email :
+            input(type="email", id="email" v-model="email" name="user[email]")
+            br
+            input(type="submit" id="submitButton")
+            br
+        hr
+        script.
+            import {Vue} from "vue";
+            let app = new Vue({
+                el: '#app',
+                data:
+                {
+                    errors: [],
+                    username: null,
+                    password: null,
+                    email: null
+                },
+
+                methods:
+                {
+                    checkForm: function(e)
+                    {
+                        if(this.username && this.password && this.email)
+                        {
+                            return true;
+                        }
+
+                        this.errors = [];
+
+                        if(!this.username)
+                        {
+                            this.errors.push("Vous devez rentrer un nom d'utilisateur")
+                        }
+
+                        if(!this.password)
+                        {
+                            this.errors.push("Vous devez rentrer un mot de passe")
+                        }
+
+                        if(!this.email)
+                        {
+                            this.errors.push("Vous devez rentrer un email")
+                        }
+
+                        e.preventDefault();
+                    }
+                }
+            });
